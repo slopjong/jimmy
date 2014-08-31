@@ -10,7 +10,7 @@
 
 <div class="counter-container" ng-show="show_counter">
 
-    <div class="countdown">00:{{ countdown | twodigit}}</div>
+    <div class="countdown">00:{{ countdown | twodigit }}</div>
 
     <div class="reset-button">
         <img ng-show="show_button" ng-if="pushed" ng-src="images/button_ON.gif">
@@ -21,4 +21,9 @@
 
 <div ng-show="jimmyDead">Jimmy has died.</div>
 
-<!--<footer>Spread the words to help Jimmy push the button.</footer>-->
+<footer>
+    Hurry up! Or spread the words to help Jimmy push the button.
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Help jimmy save the #World." data-via="JimmySaveTheWorld" data-size="large" data-hashtags="JimmySaveTheWorld">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</footer>

@@ -24,6 +24,10 @@ angular.module('jimmyApp')
             $scope.speechText2 = '';
             $scope.jimmyDead = false;
 
+            // we are moving the whole document so that the header gets out of the
+            // viewport and the share box into it
+//            $scope.htmlTopMargin = '0px';
+
             //******************************************************************
             // FUNCTIONS
 
@@ -43,6 +47,8 @@ angular.module('jimmyApp')
                     $scope.show_button = false;
                     $scope.jimmyDead = true;
                     $interval.cancel($scope.timer);
+                } else if ($scope.countdown === 10) {
+                    $('html').addClass('moveUp');
                 }
             });
 
