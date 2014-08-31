@@ -1,0 +1,31 @@
+<h1>Jimmy has to save the world.</h1>
+
+<audio autoplay="autoplay">
+    <source src="sound/audio_pitch.ogg" type="audio/ogg">
+    <source src="sound/audio_pitch.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+
+<p>
+    2048... Third World War is about to happen. All nations launched weapons of mass destruction. Total devastation of the
+    Earth is inevitable. Scientists of the last resistance invented the mighty
+    wave generator that can deactivate all missiles.
+</p>
+
+<p>
+    Jimmy found the secret base.
+</p>
+
+
+<div>
+    <div class="countdown">
+        00:{{ countdown | twodigit}}
+    </div>
+
+    <img ng-if="pushed" ng-src="images/button_ON.gif">
+    <img ng-click="push()" ng-if="!pushed" ng-src="images/button_OFF.gif">
+
+    <!--<button ng-click="countdown=15">Reset</button>-->
+
+    <div>Share</div>
+</div>
