@@ -26,10 +26,15 @@ angular.module('jimmyApp')
                 }
             });
 
-            WebSocket.onopen(function() {
-                WebSocket.send('/countdown/reset');
+            WebSocket.onmessage(function(event) {
+                if (/^\/helpers\/potential/.test(event.data)) {
+                    $scope.amountPlayer = parseInt(event.data.replace('/helpers/potential/', ''));
+                }
             });
 
+            WebSocket.onopen(function() {
+                WebSocket.send('/helpers/potential');
+            });
 
             //******************************************************************
             // VARIABLES
