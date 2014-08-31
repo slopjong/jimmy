@@ -16,7 +16,8 @@ angular.module('jimmyApp')
             //******************************************************************
             // VARIABLES
 
-            $scope.countdown = 15;
+            $scope.maxCountdown = 15
+            $scope.countdown = $scope.maxCountdown;
             $scope.pushed = false;
             $scope.show_counter = false;
             $scope.show_button = true;
@@ -32,7 +33,7 @@ angular.module('jimmyApp')
             // FUNCTIONS
 
             $scope.push = function() {
-                $scope.countdown = 15;
+                $scope.countdown = $scope.maxCountdown;
                 $scope.pushed = true;
                 $timeout(function() {
                     $scope.pushed = false;
