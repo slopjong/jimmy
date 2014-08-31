@@ -8,13 +8,17 @@
     {{ speechText2 }}
 </p>
 
-<div ng-show="show_counter">
-    <div class="countdown">
-        00:{{ countdown | twodigit}}
+<div class="counter-container" ng-show="show_counter">
+
+    <div class="countdown">00:{{ countdown | twodigit}}</div>
+
+    <div class="reset-button">
+        <img ng-show="show_button" ng-if="pushed" ng-src="images/button_ON.gif">
+        <img ng-show="show_button" ng-click="push()" ng-if="!pushed" ng-src="images/button_OFF.gif">
     </div>
 
-    <img ng-show="show_button" ng-if="pushed" ng-src="images/button_ON.gif">
-    <img ng-show="show_button" ng-click="push()" ng-if="!pushed" ng-src="images/button_OFF.gif">
-
-    <div>Share</div>
 </div>
+
+<div ng-show="jimmyDead">Jimmy has died.</div>
+
+<!--<footer>Spread the words to help Jimmy push the button.</footer>-->
