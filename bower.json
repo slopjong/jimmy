@@ -12,7 +12,8 @@
     "angular-resource": "1.2.6",
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6"
+    "angular-route": "1.2.6",
+    "angular-websocket": "https://github.com/gdi2290/angular-websocket.git"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

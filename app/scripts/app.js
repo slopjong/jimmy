@@ -5,9 +5,10 @@ angular.module('jimmyApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-websocket'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, WebSocketProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -16,4 +17,8 @@ angular.module('jimmyApp', [
       .otherwise({
         redirectTo: '/'
       });
+
+    WebSocketProvider
+      .prefix('')
+      .uri('ws://helpjim.me:8001');
   });

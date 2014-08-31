@@ -7,11 +7,29 @@ angular.module('jimmyApp')
         };
     })
     .controller('MainCtrl', [
-        '$scope', '$interval', '$timeout', 'speechWords', 'sounds',
-        function ($scope, $interval, $timeout, speechWords, sounds)
+        '$scope', '$interval', '$timeout', 'speechWords', 'sounds', 'WebSocket',
+        function ($scope, $interval, $timeout, speechWords, sounds, WebSocket)
         {
+            //******************************************************************
+            // INITIALIZATION
+
             // reverse the speech words array so that we pop the words from 'left to right'
             speechWords = speechWords.reverse();
+
+
+            //******************************************************************
+            // WEBSOCKET COMMUNICATION
+
+            WebSocket.onmessage(function(event) {
+                if (event.data === '/countdown/reset') {
+                    $scope.resetCountdown();
+                }
+            });
+
+            WebSocket.onopen(function() {
+                WebSocket.send('/countdown/reset');
+            });
+
 
             //******************************************************************
             // VARIABLES
@@ -32,13 +50,22 @@ angular.module('jimmyApp')
             //******************************************************************
             // FUNCTIONS
 
-            $scope.push = function() {
+            $scope.resetCountdown = function() {
+                // do this as a fallback
                 $scope.countdown = $scope.maxCountdown;
+            };
+            $scope.animateButton = function() {
                 $scope.pushed = true;
                 $timeout(function() {
                     $scope.pushed = false;
                 }, 800);
+            };
 
+            $scope.push = function() {
+                WebSocket.onopen(function() {
+                    WebSocket.send('/countdown/reset');
+                });
+                $scope.animateButton();
                 sounds.push.play();
             }
 
