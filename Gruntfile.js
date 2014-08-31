@@ -286,7 +286,8 @@ module.exports = function (grunt) {
             'views/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'sounds/*'
           ]
         }, {
           expand: true,
@@ -387,14 +388,13 @@ module.exports = function (grunt) {
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
     'cdnify',
     'cssmin',
     'uglify',
-    'rev',
+//    'rev',
     'usemin',
     'htmlmin'
   ]);
