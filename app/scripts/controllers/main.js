@@ -3,33 +3,23 @@
 angular.module('jimmyApp')
     .filter('twodigit', function() {
         return function(input) {
-            return (input < 10) ? '0'+input : input;
+            return (input < 10) ? '0' + input : input;
         };
     })
     .controller('MainCtrl', [
-        '$scope', '$interval', '$timeout',
-        function ($scope, $interval, $timeout)
+        '$scope', '$interval', '$timeout', 'speechWords', 'sounds',
+        function ($scope, $interval, $timeout, speechWords, sounds)
         {
+            // reverse the speech words array so that we pop the words from 'left to right'
+            speechWords = speechWords.reverse();
+
             //******************************************************************
             // VARIABLES
 
             $scope.countdown = 15;
             $scope.pushed = false;
             $scope.show_counter = false;
-
-
-            //******************************************************************
-            // SOUNDS
-
-            var sounds = {
-                speech: new buzz.sound( "/sounds/audio_pitch", {
-                    formats: [ "ogg", "mp3", "aac" ]
-                }),
-                push: new buzz.sound( "/sounds/pound", {
-                    formats: [ "ogg", "mp3", "aac" ]
-                })
-            };
-
+            $scope.speechText = '';
 
             //******************************************************************
             // FUNCTIONS
@@ -58,4 +48,15 @@ angular.module('jimmyApp')
                     }, 1000);
                 }, 1000);
             });
+
+            var currentSpeechWords = speechWords.pop();
+            var processSpeechWords = function() {
+                if (angular.isUndefined(currentSpeechWords)) {
+                    return;
+                }
+                $scope.speechText += currentSpeechWords.word;
+                $timeout(processSpeechWords, currentSpeechWords.length);
+                currentSpeechWords = speechWords.pop();
+            }
+            processSpeechWords();
     }]);
