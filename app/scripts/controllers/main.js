@@ -18,25 +18,6 @@ angular.module('jimmyApp')
 
 
             //******************************************************************
-            // WEBSOCKET COMMUNICATION
-
-            WebSocket.onmessage(function(event) {
-                if (event.data === '/countdown/reset') {
-                    $scope.resetCountdown();
-                }
-            });
-
-            WebSocket.onmessage(function(event) {
-                if (/^\/helpers\/potential/.test(event.data)) {
-                    $scope.amountPlayer = parseInt(event.data.replace('/helpers/potential/', ''));
-                }
-            });
-
-            WebSocket.onopen(function() {
-                WebSocket.send('/helpers/potential');
-            });
-
-            //******************************************************************
             // VARIABLES
 
             $scope.maxCountdown = 15
@@ -47,10 +28,25 @@ angular.module('jimmyApp')
             $scope.speechText = '';
             $scope.speechText2 = '';
             $scope.jimmyDead = false;
+            $scope.amountPlayer = 0;
 
-            // we are moving the whole document so that the header gets out of the
-            // viewport and the share box into it
-//            $scope.htmlTopMargin = '0px';
+
+            //******************************************************************
+            // WEBSOCKET COMMUNICATION
+
+            WebSocket.onmessage(function(event) {
+                if (event.data === '/countdown/reset') {
+                    $scope.resetCountdown();
+                }
+
+                if (/^\/helpers\/potential/.test(event.data)) {
+                    $scope.amountPlayer = parseInt(event.data.replace('/helpers/potential/', ''));
+                }
+            });
+
+            WebSocket.onopen(function() {
+                WebSocket.send('/helpers/potential');
+            });
 
             //******************************************************************
             // FUNCTIONS
@@ -58,6 +54,7 @@ angular.module('jimmyApp')
             $scope.resetCountdown = function() {
                 // do this as a fallback
                 $scope.countdown = $scope.maxCountdown;
+                console.log('reset countdown');
             };
             $scope.animateButton = function() {
                 $scope.pushed = true;
@@ -67,9 +64,8 @@ angular.module('jimmyApp')
             };
 
             $scope.push = function() {
-                WebSocket.onopen(function() {
-                    WebSocket.send('/countdown/reset');
-                });
+                WebSocket.send('/countdown/reset');
+                $scope.resetCountdown();
                 $scope.animateButton();
                 sounds.push.play();
             }

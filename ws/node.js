@@ -21,7 +21,10 @@ var server = ws.createServer(function (conn) {
 
     conn.on("text", function (str) {
         if (str === '/countdown/reset') {
-            notifyAllListener(str);
+            //notifyAllListener(str);
+            for (var i=0; i<connections.length; i++) {
+                connections[i].sendText(str);
+            }
         } else if(str === '/helpers/potential') {
             conn.sendText('/helpers/potential/' + connections.length);
         }
@@ -34,6 +37,9 @@ var server = ws.createServer(function (conn) {
             }
         }
         // notify all connected browsers about the change
-        notifyAllListener('/helpers/potential/' + connections.length);
+//        notifyAllListener('/helpers/potential/' + connections.length);
+        for (var i=0; i<connections.length; i++) {
+            connections[i].sendText('/helpers/potential/' + connections.length);
+        }
     })
 }).listen(8001)
