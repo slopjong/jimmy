@@ -2,6 +2,7 @@ Licenses
 --------
 
 * [pound.mp3](http://www.sounds.beachware.com/phone/pound.htm) [License](http://sounds.beachware.com/rights.htm).
+* [blastx1.mp3](http://www.sounds.beachware.com/boombang/blastx1.htm) [License](http://sounds.beachware.com/rights.htm).
 * audio[_pitch].(mp3,ogg) produced with the open source tool `espeak` tool which got post-processed.
 
 Convert WAV to MP3

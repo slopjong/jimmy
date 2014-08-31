@@ -5,7 +5,7 @@
 </p>
 
 <p>
-    Jimmy found the secret base.
+    {{ speechText2 }}
 </p>
 
 <div ng-show="show_counter">
@@ -13,8 +13,8 @@
         00:{{ countdown | twodigit}}
     </div>
 
-    <img ng-if="pushed" ng-src="images/button_ON.gif">
-    <img ng-click="push()" ng-if="!pushed" ng-src="images/button_OFF.gif">
+    <img ng-show="show_button" ng-if="pushed" ng-src="images/button_ON.gif">
+    <img ng-show="show_button" ng-click="push()" ng-if="!pushed" ng-src="images/button_OFF.gif">
 
     <div>Share</div>
 </div>

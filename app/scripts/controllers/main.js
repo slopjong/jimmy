@@ -19,7 +19,9 @@ angular.module('jimmyApp')
             $scope.countdown = 15;
             $scope.pushed = false;
             $scope.show_counter = false;
+            $scope.show_button = true;
             $scope.speechText = '';
+            $scope.speechText2 = '';
 
             //******************************************************************
             // FUNCTIONS
@@ -36,6 +38,8 @@ angular.module('jimmyApp')
 
             $scope.$watch('countdown', function(newVal, oldVal) {
                 if ($scope.countdown === 0) {
+                    sounds.explosion.play();
+                    $scope.show_button = false;
                     $interval.cancel($scope.timer);
                 }
             });
@@ -49,6 +53,7 @@ angular.module('jimmyApp')
                 }, 1000);
             });
 
+            ////////////////////////////////////////////////////////////////////
             var currentSpeechWords = speechWords.pop();
             var processSpeechWords = function() {
                 if (angular.isUndefined(currentSpeechWords)) {
@@ -59,4 +64,7 @@ angular.module('jimmyApp')
                 currentSpeechWords = speechWords.pop();
             }
             processSpeechWords();
+            ////////////////////////////////////////////////////////////////////
+
+            var speechText2 = 'Jimmy found the secret base.';
     }]);
