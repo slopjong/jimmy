@@ -11,3 +11,9 @@ Convert WAV to MP3
 ffmpeg -i audio.wav -acodec libmp3lame audio.mp3
 ffmpeg -i audio.wav -acodec libvorbis audio.ogg
 ffmpeg -i audio.mp3 -acodec libvorbis -aq 60 audio.ogg
+
+Links
+-----
+
+https://www.youtube.com/watch?v=owfmDQcxyCE
+http://superuser.com/questions/292833/how-to-change-audio-frequency
