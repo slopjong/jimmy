@@ -10,7 +10,7 @@
 
 <div class="counter-container" ng-show="show_counter">
 
-    <div class="countdown">00:{{ countdown | twodigit }}</div>
+    <div class="countdown">{{ countdown | date:'mm:ss' }}</div>
 
     <div class="reset-button">
         <img ng-show="show_button" ng-if="pushed" ng-src="images/button_ON.gif">

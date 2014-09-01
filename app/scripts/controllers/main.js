@@ -20,7 +20,7 @@ angular.module('jimmyApp')
             //******************************************************************
             // VARIABLES
 
-            $scope.maxCountdown = 15
+            $scope.maxCountdown = 300;
             $scope.countdown = $scope.maxCountdown;
             $scope.pushed = false;
             $scope.show_counter = false;
@@ -76,7 +76,7 @@ angular.module('jimmyApp')
                     $scope.show_button = false;
                     $scope.jimmyDead = true;
                     $interval.cancel($scope.timer);
-                } else if ($scope.countdown === 10) {
+                } else if ($scope.countdown === 295) {
                     $('html').addClass('moveUp');
                 }
             });
