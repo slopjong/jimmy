@@ -1,9 +1,11 @@
 
 // this is the server side part of http://helpjim.me/save/the/world/
 // to realize the multi-player part
-var ws = require("nodejs-websocket")
+var ws = require("nodejs-websocket");
+var config = require("../app/config.json");
 
 var connections = [];
+var countdown = config.maxCountdown;
 
 var notifyAllListener = function(msg) {
     for (var i=0; i<connections.length; i++) {
@@ -21,14 +23,12 @@ var server = ws.createServer(function (conn) {
 
     conn.on("text", function (str) {
         if (str === '/countdown/reset') {
-            //notifyAllListener(str);
-            for (var i=0; i<connections.length; i++) {
-                connections[i].sendText(str);
-            }
+            notifyAllListener(str);
         } else if(str === '/helpers/potential') {
             conn.sendText('/helpers/potential/' + connections.length);
         }
-    })
+    });
+
     conn.on("close", function (code, reason) {
         // remove the connection from the collection
         for (var i=0; i<connections.length; i++) {
@@ -37,9 +37,7 @@ var server = ws.createServer(function (conn) {
             }
         }
         // notify all connected browsers about the change
-//        notifyAllListener('/helpers/potential/' + connections.length);
-        for (var i=0; i<connections.length; i++) {
-            connections[i].sendText('/helpers/potential/' + connections.length);
-        }
-    })
-}).listen(8001)
+        notifyAllListener('/helpers/potential/' + connections.length);
+    });
+
+}).listen(config.wsport);
