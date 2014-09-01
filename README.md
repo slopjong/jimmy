@@ -12,7 +12,7 @@ Let's assume you have the following apache configuration.
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 
-	DocumentRoot /var/www/some/folder/html
+	DocumentRoot /var/www/some/folder/save
 
 	ServerName helpjim.me
 	ServerAlias www.helpjim.me
@@ -33,8 +33,9 @@ Let's assume you have the following apache configuration.
 </VirtualHost>
 ```
 
-The folder `/var/www/some/folder/html` would be your DocumentRoot, the path `/var/www/some/folder` has then to be set in the path variable in the deployment script `bin/deploy.sh`. Open this file in a text editor and set this variable.
+The folder `/var/www/some/folder/save` would be your DocumentRoot, the path `/var/www/some/folder` has then to be set in the path variable in the deployment script `bin/deploy.sh`. Open this file in a text editor and set this variable.
 
+It's important to that the last path segment is `save` because the node script will reference it.
 
 Deploy the game
 ---------------
