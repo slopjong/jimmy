@@ -7,8 +7,8 @@ angular.module('jimmyApp')
         };
     })
     .controller('MainCtrl', [
-        '$scope', '$interval', '$timeout', 'speechWords', 'sounds', 'WebSocket',
-        function ($scope, $interval, $timeout, speechWords, sounds, WebSocket)
+        '$scope', '$interval', '$timeout', 'speechWords', 'sounds', 'WebSocket', 'config',
+        function ($scope, $interval, $timeout, speechWords, sounds, WebSocket, config)
         {
             //******************************************************************
             // INITIALIZATION
@@ -20,7 +20,8 @@ angular.module('jimmyApp')
             //******************************************************************
             // VARIABLES
 
-            $scope.maxCountdown = 300;
+            // get the max countdown value from the constant instead
+            $scope.maxCountdown = config.maxCountdown;
             $scope.countdown = $scope.maxCountdown;
             $scope.pushed = false;
             $scope.show_counter = false;
@@ -29,7 +30,6 @@ angular.module('jimmyApp')
             $scope.speechText2 = '';
             $scope.jimmyDead = false;
             $scope.amountPlayer = 0;
-
 
             //******************************************************************
             // WEBSOCKET COMMUNICATION
@@ -68,7 +68,7 @@ angular.module('jimmyApp')
                 $scope.resetCountdown();
                 $scope.animateButton();
                 sounds.push.play();
-            }
+            };
 
             $scope.$watch('countdown', function(newVal, oldVal) {
                 if ($scope.countdown === 0) {
@@ -100,7 +100,7 @@ angular.module('jimmyApp')
                 $scope.speechText += currentSpeechWords.word;
                 $timeout(processSpeechWords, currentSpeechWords.length);
                 currentSpeechWords = speechWords.pop();
-            }
+            };
             processSpeechWords();
             ////////////////////////////////////////////////////////////////////
     }]);
