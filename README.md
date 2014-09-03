@@ -1,7 +1,7 @@
 Jimmy
 =====
 
-Jimmy has to save the world. You can help him [here](http://helpjim.me/save/the/world).
+The year is 2048. A world-wide corporations and concerns increased their power and slowly took over the control of the world order. Militantly anti-globalists try to stop the system by any possible means, including a new world war. Last resistence, the only peaceful anti-system movement built a powerful device that protects world from a possible nuclear destruction located in a secret base. Jimmy, the last of them, is the only one who can stop an incoming nuclear catastrophe. But something went wrong and he needs your help. Invite your friends and [help Jimmy save the world](http://helpjim.me/save/the/world).
 
 Server configuration
 --------------------
