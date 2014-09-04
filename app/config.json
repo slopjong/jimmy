@@ -1,4 +1,5 @@
 {
     "wsport": 8001,
+    "wsurl": "ws://helpjim.me",
     "maxCountdown": 300
 }

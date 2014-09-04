@@ -11,6 +11,7 @@ angular.module('jimmyApp', [
   // these should be taken from an external config shared with the node script
   .constant('config', {
     wsport: 8001,
+    wsurl: 'ws://helpjim.me',
     maxCountdown: 300
   })
   .config(function ($routeProvider, WebSocketProvider, config) {
@@ -24,5 +25,5 @@ angular.module('jimmyApp', [
       });
     WebSocketProvider
       .prefix('')
-      .uri('ws://helpjim.me:' + config.wsport); // the port should be taken from the constant
+      .uri(config.wsurl + ':' + config.wsport);
   });
