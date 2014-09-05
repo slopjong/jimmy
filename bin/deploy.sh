@@ -27,6 +27,7 @@ ssh "$server" "rm -rf $docroot/ws"
 scp -r dist "$server":"$docroot"/save/the/world
 scp -r ws "$server":"$docroot"/..
 ssh "$server" "ln -s $docroot/save/the/world $docroot/../app"
+ssh "$server" "cd $docroot/ws && npm install nodejs-websocket"
 ssh "$server" "chown -R www-data:www-data $docroot"
 
 create_index save
